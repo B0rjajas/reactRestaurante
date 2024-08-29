@@ -1,5 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Ordenes  from './components/Ordenes';
+import Menu from './components/Menu';
+import Nuevoplatillo from './components/Nuevoplatillo';
+import Sidebar from './ui/Sidebar';
 
 function Home() {
   return <h1 className='font-sans'>Puto subnormal de los cuyons</h1>;
@@ -11,10 +15,20 @@ function About() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-    </Routes>
+  <>
+    <div className='md:flex min-h-screen'>
+    <Sidebar />
+    <div className='md:w-3/5 xl:w-4/5'>
+      <Routes>
+          <Route path="/ordenes" element= {<Ordenes />} />
+          <Route path="/menu" element= {<Menu />} />
+          <Route path="/nuevoplatillo" element= {<Nuevoplatillo />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+      </div>
+    </div>
+    </>
   );
 }
 
