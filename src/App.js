@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 function Home() {
-  return <h1 className='font-sans'>Inicio</h1>;
+  return <h1 className='font-sans'>Hola desde MAc</h1>;
 }
 
 function About() {
