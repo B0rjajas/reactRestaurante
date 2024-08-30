@@ -1,27 +1,20 @@
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom'
-
-import { FirebaseContext } from '../firebase/firebase'; // Ajusta la ruta según la ubicación real del archivo
-
-
+import { useNavigate } from 'react-router-dom';
+import { FirebaseContext } from '../firebase/index'; // Ajusta la ruta según la ubicación real del archivo
 
 const NuevoPlatillo = () => {
+  const navigate = useNavigate();
+  const { db } = useContext(FirebaseContext);
 
-  const usenavigate = useNavigate();
-  //Context con las operaciones de firebase
-
-  const { firebase } = useContext(FirebaseContext);
-
-  console.log(firebase)
   // Validación y leer los datos del formulario
   const formik = useFormik({
     initialValues: {
       nombre: '',
       precio: '',
       categoria: '',
-      imagen: '',
+      imagen: null,  // Cambiado a null para archivos
       descripcion: '',
     },
     validationSchema: yup.object({
@@ -37,16 +30,31 @@ const NuevoPlatillo = () => {
         .min(10, 'La descripción debe ser más larga')
         .required('La descripción es obligatoria'),
     }),
-    onSubmit: platillo => {
+    onSubmit: async (platillo) => {
       try {
         platillo.existencia = true;
-        firebase.db.collection('productos').add(platillo);
 
-        //Redireccionar
-        navigate('/menu')
+        // Manejo de archivo: Si hay archivo, necesitas cargarlo en algún almacenamiento
+        if (platillo.imagen) {
+          // Aquí puedes agregar lógica para manejar el archivo de imagen
+        }
+
+        // Añadir platillo a Firestore
+        await db.collection('productos').add(platillo);
+
+        // Redireccionar
+        navigate('/menu');
       } catch (error) {
-        console.log(error)
-        
+        console.error('Error al agregar platillo:', error);
+      }
+    },
+    // Manejo de archivo en onChange
+    handleChange: (event) => {
+      const { id, files } = event.target;
+      if (id === 'imagen') {
+        formik.setFieldValue(id, files[0]);  // Establece el archivo
+      } else {
+        formik.handleChange(event);
       }
     }
   });
@@ -54,7 +62,6 @@ const NuevoPlatillo = () => {
   return (
     <>
       <h1 className="text-3xl font-light mb-4">Agregar Platillo</h1>
-
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-3xl">
           <form onSubmit={formik.handleSubmit}>
@@ -130,8 +137,7 @@ const NuevoPlatillo = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="imagen"
                 type="file"
-                value={formik.values.imagen}
-                onChange={formik.handleChange}
+                onChange={formik.handleChange}  // Manejo de archivos
                 onBlur={formik.handleBlur}
               />
             </div>
@@ -172,6 +178,6 @@ const NuevoPlatillo = () => {
       </div>
     </>
   );
-}
+};
 
 export default NuevoPlatillo;

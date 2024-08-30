@@ -1,8 +1,6 @@
-import firebase from './firebase';
-
+import { app, db } from './firebase';
 import FirebaseContext from './context';
 
-export { FirebaseContext }
+const firebase = { app, db };
 
-export default firebase;
-
+export { FirebaseContext, firebase };
