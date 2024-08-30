@@ -6,7 +6,7 @@ import Nuevoplatillo from './components/Nuevoplatillo';
 import Sidebar from './ui/Sidebar';
 
 
-import firebase, { FirebaseContext } from './firebase';
+import { FirebaseContext } from '../firebase/firebase'; // Ajusta la ruta según la ubicación real del archivo
 
 function Home() {
   return <h1 className='font-sans'>Puto subnormal de los cuyons</h1>;
