@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { Yup } from 'yup'
+import * as yup from 'yup';
 
 const NuevoPlatillo = () => {
   // validación y leer los datos del formulario
