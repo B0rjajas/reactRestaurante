@@ -5,6 +5,9 @@ import Menu from './components/Menu';
 import Nuevoplatillo from './components/Nuevoplatillo';
 import Sidebar from './ui/Sidebar';
 
+
+import firebase, { FirebaseContext } from './firebase';
+
 function Home() {
   return <h1 className='font-sans'>Puto subnormal de los cuyons</h1>;
 }
@@ -15,7 +18,14 @@ function About() {
 
 function App() {
   return (
+
   <>
+  <FirebaseContext.Provider 
+    value= {{
+      firebase
+    }}
+  />
+
     <div className='md:flex min-h-screen'>
     <Sidebar />
     <div className='md:w-3/5 xl:w-4/5'>

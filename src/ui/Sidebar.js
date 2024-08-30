@@ -11,7 +11,9 @@ return(
         
         <nav className="mt-10 ">
             <Link to="/">Ordenes</Link>
-            <NavLink className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-500" activeClassname="text-yellow-500" exact to="/menu">Menú</NavLink>
+            <NavLink className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-500" activeClassname="text-yellow-500" exact="true" to="/menu">Ordenes</NavLink>
+            <NavLink className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-500" activeClassname="text-yellow-500" exact="true" to="/menu">Menú</NavLink>
+
         </nav>
         
         </div>
