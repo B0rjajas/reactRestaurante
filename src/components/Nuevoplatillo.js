@@ -3,7 +3,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom'
 
-import { FirebaseContext } from '../firebase';
+import { FirebaseContext } from '../firebase/firebase'; // Ajusta la ruta según la ubicación real del archivo
+
 
 
 const NuevoPlatillo = () => {
