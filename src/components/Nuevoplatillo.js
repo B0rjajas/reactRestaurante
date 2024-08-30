@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 
 const NuevoPlatillo = () => {
-  // validación y leer los datos del formulario
+  // validación y leer los datos del formularioo
   const formik = useFormik({
     initialValues: {
       nombre: '',
